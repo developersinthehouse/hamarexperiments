@@ -115,6 +115,142 @@ const groupInfo = {
   Tarun: "Classes 11-12"
 };
 
+const ncertSpecificRefs = [
+  { keywords: ["carbohydrate", "starch"], label: "NCERT Class 6 Science Exemplar - Components of Food", url: "https://www.ncert.nic.in/pdf/publication/exemplarproblem/classVI/science/feep202.pdf" },
+  { keywords: ["onion peel"], label: "NCERT Class 8 Science - Cell Structure and Functions", url: "https://www.ncert.nic.in/textbook/pdf/hesc108.pdf" },
+  { keywords: ["soil contains moisture"], label: "NCERT Class 7 Science - Soil", url: "https://www.ncert.nic.in/textbook/pdf/gesc109.pdf" },
+  { keywords: ["magnesium oxide"], label: "NCERT Class 7 Science - Physical and Chemical Changes", url: "https://www.ncert.nic.in/textbook/pdf/gesc106.pdf" },
+  { keywords: ["fat"], label: "NCERT Class 6 Science Exemplar - Components of Food", url: "https://www.ncert.nic.in/pdf/publication/exemplarproblem/classVI/science/feep202.pdf" },
+  { keywords: ["liquids conduct electricity"], label: "NCERT Class 8 Science - Chemical Effects of Electric Current", url: "https://www.ncert.nic.in/textbook/pdf/hesc114.pdf" },
+  { keywords: ["concave mirror"], label: "NCERT Class 7 Science - Light", url: "https://www.ncert.nic.in/textbook/pdf/gesc115.pdf" },
+  { keywords: ["buoyant force"], label: "NCERT Class 8 Science - Force and Pressure", url: "https://www.ncert.nic.in/textbook/pdf/hesc111.pdf" },
+  { keywords: ["white light"], label: "NCERT Class 8 Science - Light", url: "https://www.ncert.nic.in/textbook/pdf/hesc116.pdf" },
+  { keywords: ["transfers charge"], label: "NCERT Class 8 Science - Some Natural Phenomena", url: "https://www.ncert.nic.in/textbook/pdf/hesc115.pdf" },
+  { keywords: ["crystals of copper sulphate"], label: "NCERT Class 7 Science - Physical and Chemical Changes", url: "https://www.ncert.nic.in/textbook/pdf/gesc106.pdf" },
+  { keywords: ["neutralization"], label: "NCERT Class 7 Science - Acids, Bases and Salts", url: "https://www.ncert.nic.in/textbook/pdf/gesc104.pdf" },
+  { keywords: ["sulphur", "iron filings", "ammonium chloride"], label: "NCERT Class 6 Science - Separation of Substances", url: "https://www.ncert.nic.in/textbook/pdf/fesc105.pdf" },
+  { keywords: ["hydrogen gas", "metal reacts with acid"], label: "NCERT Class 8 Science - Materials: Metals and Non-Metals", url: "https://www.ncert.nic.in/textbook/pdf/hesc104.pdf" },
+  { keywords: ["saliva", "starch"], label: "NCERT Class 7 Science - Nutrition in Animals", url: "https://www.ncert.nic.in/textbook/pdf/gesc102.pdf" }
+];
+
+function isBalExperiment(experiment) {
+  return experiment.group === "Bal";
+}
+
+function primaryNcertReference(experiment) {
+  if (!isBalExperiment(experiment)) return null;
+  const title = experiment.title.toLowerCase();
+  return ncertSpecificRefs.find((entry) => entry.keywords.every((keyword) => title.includes(keyword)))
+    || { label: "NCERT Science Textbook Reference", url: "https://www.ncert.nic.in/textbook.php?ln=en" };
+}
+
+function ncertReferencesFor(experiment) {
+  if (!isBalExperiment(experiment)) return [];
+  return [primaryNcertReference(experiment)];
+}
+
+const olabsSubjectRefs = {
+  Physics: { label: "OLabs Physics Experiments", url: "https://amrita.olabs.edu.in/?sub=1" },
+  Chemistry: { label: "OLabs Chemistry Experiments", url: "https://amrita.olabs.edu.in/?sub=73" },
+  Biology: { label: "OLabs Biology Experiments", url: "https://amrita.olabs.edu.in/?sub=79" }
+};
+
+const olabsSpecificRefs = [
+  { subject: "Physics", keywords: ["ohm"], label: "OLabs - Ohm's Law", url: "https://amrita.olabs.edu.in/?sub=1&brch=4&sim=99&cnt=199" },
+  { subject: "Physics", keywords: ["equivalent resistance", "series"], label: "OLabs - Equivalent Resistance of Resistors (Series)", url: "https://amrita.olabs.edu.in/?brch=4&cnt=1&sim=40&sub=1" },
+  { subject: "Physics", keywords: ["density"], label: "OLabs - Determination of Density of Solid", url: "https://amrita.olabs.edu.in/?sub=1&brch=1&sim=2&cnt=9" },
+  { subject: "Physics", keywords: ["convex lens", "distant object"], label: "OLabs - Convex Lens Focal Length", url: "https://amrita.olabs.edu.in/?brch=4&cnt=1&sim=277&sub=1" },
+  { subject: "Physics", keywords: ["path of deviation"], label: "OLabs - Refraction Through a Prism", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["vernier"], label: "OLabs - Vernier Calipers", url: "https://amrita.olabs.edu.in/?brch=5&cnt=1&sim=16&sub=1" },
+  { subject: "Physics", keywords: ["resonance tube"], label: "OLabs - Resonance Column", url: "https://amrita.olabs.edu.in/?brch=5&cnt=1&sim=36&sub=1" },
+  { subject: "Physics", keywords: ["meter bridge", "given wire"], label: "OLabs - Metre Bridge: Resistance of a Wire", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["parallel combination", "meter bridge"], label: "OLabs - Metre Bridge: Combination of Resistors", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["galvanometer", "ammeter"], label: "OLabs - Conversion of Galvanometer to Ammeter", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["diode"], label: "OLabs - Diode Characteristics", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["simple pendulum"], label: "OLabs - Simple Pendulum", url: "https://amrita.olabs.edu.in/?brch=5&cnt=1&sim=159&sub=1" },
+  { subject: "Physics", keywords: ["minimum deviation"], label: "OLabs - Refraction Through a Prism", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["sonometer"], label: "OLabs - Sonometer", url: "https://amrita.olabs.edu.in/?sub=1" },
+  { subject: "Physics", keywords: ["spherometer"], label: "OLabs - Spherometer", url: "https://amrita.olabs.edu.in/?brch=5&cnt=1&sim=168&sub=1" },
+  { subject: "Chemistry", keywords: ["iron nail", "copper sulphate"], label: "OLabs - Iron Nail with Copper Sulphate", url: "https://vlab.amrita.edu/repo/CHE/INC/Type_Of_Reaction_iron_nail_with_copper_new/manual.php" },
+  { subject: "Chemistry", keywords: ["zinc", "dilute hcl"], label: "OLabs Chemistry - Metal and Acid Reaction", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["quicklime"], label: "OLabs Chemistry - Chemical Reactions", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["amphoteric"], label: "OLabs Chemistry - Amphoteric Nature of Zinc", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["acetic acid", "ethanol"], label: "OLabs Chemistry - Esterification", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["acidic radical"], label: "OLabs - Salt Analysis / Qualitative Analysis", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["basic radical"], label: "OLabs - Salt Analysis / Qualitative Analysis", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["functional group"], label: "OLabs - Functional Group Analysis", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["normality"], label: "OLabs - Volumetric Analysis / Titration", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["strength"], label: "OLabs - Volumetric Analysis / Titration", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["standard solution"], label: "OLabs - Standard Solution Preparation", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["mohr"], label: "OLabs - KMnO4 / Mohr's Salt Titration", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["sodium carbonate"], label: "OLabs - Acid Base Titration", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Chemistry", keywords: ["double salt"], label: "OLabs Chemistry - Preparation of Double Salt", url: "https://amrita.olabs.edu.in/?sub=73" },
+  { subject: "Biology", keywords: ["chlorophyll"], label: "OLabs Biology - Photosynthesis / Chlorophyll", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["cheek"], label: "OLabs Biology - Human Cheek Cells", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["stomata"], label: "OLabs Biology - Stomata / Leaf Peel", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["angiospermic"], label: "OLabs Biology - Study of Flowering Plants", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["skeleton"], label: "OLabs Biology - Human Skeleton and Joints", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["dicot stem"], label: "OLabs Biology - T.S. of Dicot Stem", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["plasmolysis"], label: "OLabs Biology - Plasmolysis", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["sugar, starch, proteins"], label: "OLabs - Test for Starch", url: "https://amrita.olabs.edu.in/?brch=15&cnt=1&sim=121&sub=79" },
+  { subject: "Biology", keywords: ["chromatography"], label: "OLabs Biology - Paper Chromatography", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["pollen"], label: "OLabs Biology - Pollen Germination", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["mitosis"], label: "OLabs Biology - Mitosis / Onion Root Tip", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["dna"], label: "OLabs Biology - DNA Isolation", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["pedigree"], label: "OLabs Biology - Pedigree Chart", url: "https://amrita.olabs.edu.in/?sub=79" },
+  { subject: "Biology", keywords: ["homologous"], label: "OLabs Biology - Homologous and Analogous Organs", url: "https://amrita.olabs.edu.in/?sub=79" }
+];
+
+function isSeniorExperiment(experiment) {
+  return experiment.group === "Kishor" || experiment.group === "Tarun";
+}
+
+function primaryOlabsReference(experiment) {
+  if (!isSeniorExperiment(experiment)) return null;
+  const title = experiment.title.toLowerCase();
+  const exact = olabsSpecificRefs.find((entry) =>
+    entry.subject === experiment.subject && entry.keywords.every((keyword) => title.includes(keyword))
+  );
+  return exact || olabsSubjectRefs[experiment.subject] || { label: "OLabs", url: "https://www.olabs.edu.in/" };
+}
+
+function olabsReferencesFor(experiment) {
+  if (!isSeniorExperiment(experiment)) {
+    return [{ label: "Reference source pending for this level", pending: true }];
+  }
+  const primary = primaryOlabsReference(experiment);
+  const subject = olabsSubjectRefs[experiment.subject];
+  return subject && subject.url !== primary.url ? [primary, subject] : [primary];
+}
+
+function olabsSourceHtml(experiment) {
+  if (!isSeniorExperiment(experiment)) return "";
+  const ref = primaryOlabsReference(experiment);
+  return `
+    <section class="note wide olabs-source-note">
+      <h3>OLabs Source Rule</h3>
+      <p>Aim is written by Hamarexperiments. For class 9-12, theory, procedure, observation style, calculation method, circuit/figure, and final diagram should be checked from this OLabs source.</p>
+      <a class="reference-link" href="${ref.url}" target="_blank" rel="noreferrer">${ref.label}</a>
+    </section>
+  `;
+}
+
+function ncertSourceHtml(experiment) {
+  if (!isBalExperiment(experiment)) return "";
+  const ref = primaryNcertReference(experiment);
+  return `
+    <section class="note wide ncert-source-note">
+      <h3>NCERT Source Rule</h3>
+      <p>Aim is written by Hamarexperiments. For class 6-8, theory, procedure, observation style, calculation, activity figure, and final diagram should be checked from this specific NCERT source.</p>
+      <a class="reference-link" href="${ref.url}" target="_blank" rel="noreferrer">${ref.label}</a>
+    </section>
+  `;
+}
+
+function sourceRuleHtml(experiment) {
+  return ncertSourceHtml(experiment) || olabsSourceHtml(experiment);
+}
+
 let currentFilter = "all";
 let currentSubject = "all";
 const cards = document.querySelector("#cards");
@@ -155,7 +291,83 @@ function tagsFor(experiment) {
   return tags.slice(0, 2);
 }
 
+function olabsTheoryFor(experiment) {
+  if (!isSeniorExperiment(experiment)) return null;
+  const t = experiment.title.toLowerCase();
+  const ref = primaryOlabsReference(experiment);
+  let core = "Use the OLabs theory section as the final source for definitions, principle, apparatus figure, and labelled setup.";
+  if (t.includes("ohm")) core = "At constant temperature, the current through a conductor varies directly with the potential difference across it; the V-I graph is a straight line and its slope gives resistance.";
+  else if (t.includes("density")) core = "Density is determined from mass and displaced volume; OLabs shows the spring balance and measuring-cylinder setup used to find volume of an irregular solid.";
+  else if (t.includes("resistance")) core = "OLabs explains resistor combination laws and the circuit/bridge arrangement needed to verify the relation from measured potential difference and current.";
+  else if (t.includes("lens") || t.includes("mirror") || t.includes("prism") || t.includes("refractive")) core = "OLabs ray optics theory should be used for the ray diagram, sign convention, graph method, and final labelled optical arrangement.";
+  else if (t.includes("resonance") || t.includes("sonometer") || t.includes("pendulum")) core = "OLabs theory relates the measured length/time data with wave motion or oscillation formulae; use its labelled apparatus figure before drawing in the manual.";
+  else if (t.includes("vernier") || t.includes("spherometer")) core = "OLabs explains least count, zero correction, measurement reading, and the labelled instrument diagram needed for the manual.";
+  else if (t.includes("diode") || t.includes("galvanometer")) core = "OLabs circuit theory and circuit diagram should be used for connections, polarity, graph plotting, and verification.";
+  else if (t.includes("salt") || t.includes("radical")) core = "OLabs qualitative analysis theory should be used for preliminary tests, group tests, confirmatory tests, colour changes, precipitates, and inference.";
+  else if (t.includes("functional group")) core = "OLabs organic qualitative analysis should be used for reagent choice, positive observation, and the inference for the given functional group.";
+  else if (t.includes("normality") || t.includes("strength") || t.includes("standard solution") || t.includes("mohr") || t.includes("sodium carbonate")) core = "OLabs titration/manual theory should be used for standard solution preparation, endpoint, indicator, concordant readings, and strength calculation.";
+  else if (t.includes("chlorophyll") || t.includes("stomata") || t.includes("cheek") || t.includes("mitosis") || t.includes("dicot") || t.includes("plasmolysis")) core = "OLabs biology manual should be used for staining method, slide preparation, microscope labels, observation points, and the final labelled figure.";
+  else if (t.includes("chromatography")) core = "OLabs chromatography theory should be used for pigment separation, solvent front, pigment bands, and Rf value calculation.";
+  else if (t.includes("dna")) core = "OLabs DNA isolation theory should be used for cell lysis, detergent action, salt effect, ethanol precipitation, and the labelled test-tube figure.";
+  return `${core} Source: ${ref.label}.`;
+}
+
+function ncertTheoryFor(experiment) {
+  if (!isBalExperiment(experiment)) return null;
+  const t = experiment.title.toLowerCase();
+  const ref = primaryNcertReference(experiment);
+  let core = "Use the NCERT activity/chapter as the final source for the principle, observation style, and labelled figure.";
+  if (t.includes("starch") && t.includes("food")) core = "NCERT Components of Food explains iodine testing for starch; a blue-black colour after iodine confirms starch in the food sample.";
+  else if (t.includes("onion peel")) core = "NCERT Cell Structure and Functions is the source for slide preparation, cell wall, cytoplasm, nucleus, and labelled onion-cell diagram.";
+  else if (t.includes("soil contains moisture")) core = "NCERT Soil chapter supports the heating activity where water droplets on the cooler test-tube wall show moisture in soil.";
+  else if (t.includes("magnesium oxide")) core = "NCERT Physical and Chemical Changes explains burning magnesium ribbon and the formation of white magnesium oxide ash.";
+  else if (t.includes("fat")) core = "NCERT Components of Food uses food tests to identify nutrients; a translucent greasy patch on paper indicates fat.";
+  else if (t.includes("liquids conduct electricity")) core = "NCERT Chemical Effects of Electric Current shows the tester circuit used to compare conduction through different liquids.";
+  else if (t.includes("concave mirror")) core = "NCERT Light chapter should be used for mirror terminology, image nature, screen position, and labelled ray diagram.";
+  else if (t.includes("buoyant")) core = "NCERT Force and Pressure gives the pressure/force background; record apparent loss of weight in water to discuss upward buoyant force.";
+  else if (t.includes("white light")) core = "NCERT Light chapter is the source for dispersion of white light and the prism/spectrum figure.";
+  else if (t.includes("charge")) core = "NCERT Some Natural Phenomena explains charging by rubbing and attraction of small paper pieces by a charged object.";
+  else if (t.includes("copper sulphate")) core = "NCERT Physical and Chemical Changes explains crystallisation; use its copper sulphate crystal activity as the diagram and method reference.";
+  else if (t.includes("neutralization")) core = "NCERT Acids, Bases and Salts explains neutralisation of acid and base to form salt and water; indicator colour marks the endpoint.";
+  else if (t.includes("sulphur, iron")) core = "NCERT Separation of Substances should be used for separating components by their physical properties and suitable separation method.";
+  else if (t.includes("hydrogen")) core = "NCERT Materials: Metals and Non-Metals explains that many metals react with acids to produce hydrogen gas, identified by the pop sound test.";
+  else if (t.includes("saliva")) core = "NCERT Nutrition in Animals explains digestion of starch by saliva; iodine testing compares starch before and after saliva action.";
+  return `${core} Source: ${ref.label}.`;
+}
+
+function olabsProcedureFor(experiment) {
+  if (!isSeniorExperiment(experiment)) return null;
+  const ref = primaryOlabsReference(experiment);
+  return [
+    `Open the attached OLabs source: ${ref.label}.`,
+    "Use the OLabs apparatus/circuit/figure as the final diagram reference before drawing in the lab manual.",
+    "Arrange the apparatus and connections exactly as shown in the OLabs manual or simulator.",
+    "Follow the OLabs procedure sequence, changing only the required variable for each trial.",
+    "Record readings in the experiment-specific observation table with correct units and headings.",
+    "Complete calculation, graph, inference, precautions, and result using the OLabs method."
+  ];
+}
+
+function ncertProcedureFor(experiment) {
+  if (!isBalExperiment(experiment)) return null;
+  const ref = primaryNcertReference(experiment);
+  return [
+    `Open the attached NCERT source: ${ref.label}.`,
+    "Use the NCERT activity/figure as the final diagram reference before drawing in the lab manual.",
+    "Arrange the apparatus and materials according to the NCERT activity idea.",
+    "Perform the experiment carefully and record only the observation seen in your setup.",
+    "Fill the experiment-specific observation table with correct units, colour change, or inference.",
+    "Write the result in simple NCERT-style language and attach/draw the relevant labelled figure."
+  ];
+}
+
 function theoryFor(experiment) {
+  const ncertTheory = ncertTheoryFor(experiment);
+  if (ncertTheory) return ncertTheory;
+
+  const olabsTheory = olabsTheoryFor(experiment);
+  if (olabsTheory) return olabsTheory;
+
   const t = experiment.title.toLowerCase();
   if (t.includes("ohm")) return "Ohm's law states that current through a conductor is directly proportional to potential difference when temperature remains constant.";
   if (t.includes("density")) return "Density is mass per unit volume. For an irregular solid, volume can be found from displaced water.";
@@ -290,7 +502,191 @@ function diagramFor(experiment) {
   return ["Neat labelled diagram of apparatus setup", "Arrows for observation/change", "Label all important parts"];
 }
 
+function officialReferenceFor(experiment) {
+  if (isBalExperiment(experiment)) return ncertReferencesFor(experiment);
+  return olabsReferencesFor(experiment);
+}
+
+function referenceLinksHtml(experiment) {
+  return officialReferenceFor(experiment)
+    .map((ref) => ref.pending
+      ? `<span class="reference-pending">${ref.label}</span>`
+      : `<a class="reference-link" href="${ref.url}" target="_blank" rel="noreferrer">${ref.label}</a>`)
+    .join("");
+}
+
+function diagramVisualFor(experiment) {
+  const t = experiment.title.toLowerCase();
+  const wrap = (body) => `
+    <svg class="diagram-visual" viewBox="0 0 360 190" role="img" aria-label="Experiment diagram">
+      <rect x="1" y="1" width="358" height="188" rx="12" fill="#ffffff" stroke="#d7e2dc"/>
+      ${body}
+    </svg>
+  `;
+  const label = (x, y, text) => `<text x="${x}" y="${y}" font-size="12" fill="#46534f" font-family="Arial">${text}</text>`;
+
+  if (t.includes("ohm") || t.includes("resistance") || t.includes("diode") || t.includes("conduct electricity")) {
+    return wrap(`
+      <line x1="46" y1="95" x2="314" y2="95" stroke="#1f6f5b" stroke-width="3"/>
+      <rect x="42" y="72" width="42" height="46" rx="6" fill="#e8f3ee" stroke="#1f6f5b"/>
+      <circle cx="130" cy="95" r="22" fill="#fff" stroke="#275f91" stroke-width="3"/>
+      <rect x="188" y="78" width="58" height="34" rx="6" fill="#fff8ec" stroke="#a86116" stroke-width="3"/>
+      <circle cx="286" cy="95" r="22" fill="#fff" stroke="#275f91" stroke-width="3"/>
+      ${label(52, 100, "Cell")}
+      ${label(124, 100, "A")}
+      ${label(200, 100, "R")}
+      ${label(280, 100, "V")}
+      ${label(112, 144, "Ammeter in series, voltmeter across resistance")}
+    `);
+  }
+
+  if (t.includes("vernier")) {
+    return wrap(`
+      <rect x="42" y="74" width="225" height="28" rx="4" fill="#f2f7f4" stroke="#1f6f5b" stroke-width="3"/>
+      <rect x="82" y="102" width="90" height="22" rx="3" fill="#fff8ec" stroke="#a86116" stroke-width="2"/>
+      <line x1="62" y1="74" x2="62" y2="42" stroke="#1f6f5b" stroke-width="5"/>
+      <line x1="234" y1="74" x2="234" y2="42" stroke="#1f6f5b" stroke-width="5"/>
+      <circle cx="292" cy="88" r="20" fill="#f8c66a" stroke="#a86116" stroke-width="3"/>
+      ${label(88, 94, "Main scale")}
+      ${label(90, 118, "Vernier scale")}
+      ${label(267, 124, "Bob")}
+      ${label(52, 155, "Reading = MSR + VSR x L.C.")}
+    `);
+  }
+
+  if (t.includes("prism") || t.includes("white light") || t.includes("minimum deviation")) {
+    return wrap(`
+      <line x1="30" y1="95" x2="132" y2="95" stroke="#275f91" stroke-width="3"/>
+      <polygon points="150,45 105,135 205,135" fill="#eef7ff" stroke="#275f91" stroke-width="3"/>
+      <line x1="188" y1="92" x2="318" y2="58" stroke="#8b3f9f" stroke-width="2"/>
+      <line x1="188" y1="96" x2="318" y2="82" stroke="#1f6f5b" stroke-width="2"/>
+      <line x1="188" y1="100" x2="318" y2="108" stroke="#a86116" stroke-width="2"/>
+      ${label(40, 84, "White light")}
+      ${label(128, 150, "Glass prism")}
+      ${label(268, 140, "Spectrum")}
+    `);
+  }
+
+  if (t.includes("lens") || t.includes("concave mirror") || t.includes("mirror")) {
+    return wrap(`
+      <line x1="28" y1="105" x2="330" y2="105" stroke="#d7e2dc" stroke-width="2"/>
+      <line x1="95" y1="58" x2="95" y2="128" stroke="#a86116" stroke-width="3"/>
+      <path d="M185 48 C165 82 165 128 185 154 C205 128 205 82 185 48Z" fill="#eef7ff" stroke="#275f91" stroke-width="3"/>
+      <rect x="265" y="50" width="10" height="104" fill="#e8f3ee" stroke="#1f6f5b"/>
+      <line x1="98" y1="62" x2="185" y2="78" stroke="#1f6f5b" stroke-width="2"/>
+      <line x1="185" y1="78" x2="270" y2="70" stroke="#1f6f5b" stroke-width="2"/>
+      <line x1="98" y1="126" x2="185" y2="132" stroke="#1f6f5b" stroke-width="2"/>
+      <line x1="185" y1="132" x2="270" y2="135" stroke="#1f6f5b" stroke-width="2"/>
+      ${label(77, 148, "Object")}
+      ${label(168, 172, "Lens/Mirror")}
+      ${label(248, 172, "Screen")}
+    `);
+  }
+
+  if (t.includes("pendulum")) {
+    return wrap(`
+      <line x1="80" y1="38" x2="260" y2="38" stroke="#1f6f5b" stroke-width="5"/>
+      <line x1="170" y1="38" x2="225" y2="128" stroke="#46534f" stroke-width="2"/>
+      <circle cx="225" cy="128" r="18" fill="#f8c66a" stroke="#a86116" stroke-width="3"/>
+      <path d="M170 38 A94 94 0 0 0 225 128" fill="none" stroke="#d7e2dc" stroke-dasharray="5 5"/>
+      ${label(180, 78, "Length L")}
+      ${label(235, 132, "Bob")}
+      ${label(94, 30, "Rigid support")}
+    `);
+  }
+
+  if (t.includes("titration") || t.includes("normality") || t.includes("kmno4") || t.includes("mohr") || t.includes("sodium carbonate")) {
+    return wrap(`
+      <rect x="165" y="28" width="18" height="108" fill="#eef7ff" stroke="#275f91" stroke-width="3"/>
+      <line x1="174" y1="136" x2="174" y2="154" stroke="#275f91" stroke-width="3"/>
+      <path d="M118 154 L230 154 L205 118 L143 118 Z" fill="#fff8ec" stroke="#a86116" stroke-width="3"/>
+      <rect x="102" y="26" width="8" height="132" fill="#e8f3ee" stroke="#1f6f5b"/>
+      <line x1="110" y1="58" x2="165" y2="58" stroke="#1f6f5b" stroke-width="3"/>
+      ${label(188, 62, "Burette")}
+      ${label(135, 176, "Conical flask")}
+      ${label(70, 92, "Stand")}
+    `);
+  }
+
+  if (t.includes("microscope") || t.includes("slide") || t.includes("stomata") || t.includes("mitosis") || t.includes("cheek") || t.includes("onion")) {
+    return wrap(`
+      <rect x="54" y="112" width="150" height="22" rx="6" fill="#eef7ff" stroke="#275f91" stroke-width="3"/>
+      <rect x="105" y="102" width="52" height="12" rx="4" fill="#e8f3ee" stroke="#1f6f5b"/>
+      <circle cx="265" cy="88" r="46" fill="#fff" stroke="#1f6f5b" stroke-width="3"/>
+      <circle cx="246" cy="82" r="10" fill="#f8c66a" stroke="#a86116"/>
+      <circle cx="278" cy="98" r="9" fill="#f8c66a" stroke="#a86116"/>
+      <circle cx="266" cy="65" r="7" fill="#f8c66a" stroke="#a86116"/>
+      ${label(82, 152, "Slide + cover slip")}
+      ${label(230, 152, "Microscope view")}
+    `);
+  }
+
+  if (t.includes("immiscible") || t.includes("separating funnel")) {
+    return wrap(`
+      <path d="M150 38 H230 L205 116 V146 H175 V116 Z" fill="#eef7ff" stroke="#275f91" stroke-width="3"/>
+      <line x1="158" y1="74" x2="222" y2="74" stroke="#a86116" stroke-width="3"/>
+      <line x1="176" y1="146" x2="204" y2="146" stroke="#1f6f5b" stroke-width="5"/>
+      <rect x="164" y="156" width="52" height="16" fill="#e8f3ee" stroke="#1f6f5b"/>
+      ${label(235, 62, "Oil")}
+      ${label(235, 98, "Water")}
+      ${label(218, 148, "Stopcock")}
+    `);
+  }
+
+  if (t.includes("chromatography")) {
+    return wrap(`
+      <rect x="150" y="30" width="58" height="130" fill="#fff" stroke="#275f91" stroke-width="3"/>
+      <line x1="150" y1="135" x2="208" y2="135" stroke="#a86116" stroke-width="2"/>
+      <circle cx="178" cy="122" r="5" fill="#1f6f5b"/>
+      <circle cx="178" cy="94" r="5" fill="#f8c66a"/>
+      <circle cx="178" cy="68" r="5" fill="#275f91"/>
+      <rect x="116" y="150" width="126" height="18" fill="#eef7ff" stroke="#275f91"/>
+      ${label(215, 72, "Pigment bands")}
+      ${label(210, 136, "Solvent front")}
+    `);
+  }
+
+  if (t.includes("dna")) {
+    return wrap(`
+      <rect x="150" y="32" width="60" height="132" rx="10" fill="#eef7ff" stroke="#275f91" stroke-width="3"/>
+      <line x1="154" y1="80" x2="206" y2="80" stroke="#1f6f5b" stroke-width="3"/>
+      <path d="M162 66 C178 54 186 78 202 64" fill="none" stroke="#ffffff" stroke-width="4"/>
+      <path d="M162 66 C178 54 186 78 202 64" fill="none" stroke="#a86116" stroke-width="2"/>
+      <line x1="154" y1="120" x2="206" y2="120" stroke="#a86116" stroke-width="3"/>
+      ${label(218, 68, "DNA threads")}
+      ${label(218, 104, "Ethanol layer")}
+      ${label(218, 142, "Plant extract")}
+    `);
+  }
+
+  if (t.includes("bar magnet") || t.includes("four directions")) {
+    return wrap(`
+      <line x1="180" y1="32" x2="180" y2="154" stroke="#d7e2dc" stroke-width="2"/>
+      <rect x="122" y="78" width="116" height="30" rx="15" fill="#fff" stroke="#1f6f5b" stroke-width="3"/>
+      <rect x="122" y="78" width="58" height="30" rx="15" fill="#f8c66a" stroke="#a86116" stroke-width="2"/>
+      ${label(145, 98, "N")}
+      ${label(203, 98, "S")}
+      ${label(172, 28, "North")}
+      ${label(174, 172, "South")}
+    `);
+  }
+
+  return wrap(`
+    <rect x="80" y="62" width="200" height="78" rx="10" fill="#f2f7f4" stroke="#1f6f5b" stroke-width="3"/>
+    <line x1="105" y1="92" x2="255" y2="92" stroke="#275f91" stroke-width="3"/>
+    <circle cx="132" cy="92" r="12" fill="#f8c66a" stroke="#a86116" stroke-width="2"/>
+    <circle cx="226" cy="92" r="12" fill="#f8c66a" stroke="#a86116" stroke-width="2"/>
+    ${label(108, 158, "Draw neat labelled setup")}
+  `);
+}
+
 function procedureFor(experiment) {
+  const ncertProcedure = ncertProcedureFor(experiment);
+  if (ncertProcedure) return ncertProcedure;
+
+  const olabsProcedure = olabsProcedureFor(experiment);
+  if (olabsProcedure) return olabsProcedure;
+
   const t = experiment.title.toLowerCase();
   if (t.includes("ohm")) return [
     "Connect cell, key, ammeter, resistance wire, and rheostat in series.",
@@ -649,26 +1045,26 @@ function observationTableFor(experiment) {
   if (t.includes("air exerts pressure")) return [["S. No.", "Condition", "Card position", "Water falls?", "Inference"], ["1", "Glass filled and inverted with card", "", "", ""], ["2", "Card removed/loose", "", "", ""]];
   if (t.includes("four directions")) return [["S. No.", "Trial", "Magnet end pointing north", "Magnet end pointing south", "Direction line"], ["1", "Trial 1", "", "", ""], ["2", "Trial 2", "", "", ""]];
   if (t.includes("acidity and alkalinity")) return [["S. No.", "Litmus paper", "Original colour", "Colour after soil solution", "Inference"], ["1", "Blue litmus", "Blue", "", ""], ["2", "Red litmus", "Red", "", ""]];
-  if (t.includes("peanut") || t.includes("fat")) return [["S. No.", "Food sample", "Paper before rubbing", "Paper after rubbing", "Fat present/absent"], ["1", "Peanut/sample", "", "", ""], ["2", "Control paper", "", "", ""]];
+  if (t.includes("peanut") || (isBalExperiment(experiment) && t.includes("fat"))) return [["S. No.", "Food sample", "Paper condition before rubbing", "Observation after drying", "Translucent/greasy patch", "Inference"], ["1", "Given food sample", "Clean and dry", "", "", ""], ["2", "Control: plain paper", "Clean and dry", "", "", ""]];
   if (t.includes("air inside soil")) return [["S. No.", "Soil condition", "Water added", "Bubbles observed", "Inference"], ["1", "Dry soil", "", "", ""], ["2", "Wet/settled soil", "", "", ""]];
-  if (t.includes("soil contains moisture")) return [["S. No.", "Soil sample", "Heating time", "Droplets on test tube", "Moisture present/absent"], ["1", "Given soil", "", "", ""]];
+  if (t.includes("soil contains moisture")) return [["S. No.", "Soil sample", "Initial appearance", "Heating done", "Observation on cooler test-tube wall", "Inference"], ["1", "Given soil sample", "", "Gentle heating", "", ""], ["2", "Dry/control soil, if used", "", "Gentle heating", "", ""]];
   if (t.includes("condensation")) return [["S. No.", "Glass contents", "Time kept", "Outer surface observation", "Inference"], ["1", "Ice/cold water", "", "", ""], ["2", "Normal water control", "", "", ""]];
   if (t.includes("transparent")) return [["S. No.", "Material", "Object/text visibility", "Light transmission", "Transparent/Translucent"], ["1", "Glass/transparent sheet", "", "", ""], ["2", "Butter paper/translucent sheet", "", "", ""]];
   if (t.includes("immiscible")) return [["S. No.", "Layer", "Position in funnel", "Liquid collected", "Reason"], ["1", "Oil", "Upper layer", "", ""], ["2", "Water", "Lower layer", "", ""]];
   if (t.includes("cotton thread")) return [["S. No.", "Thread condition", "Distance", "Sound heard clearly?", "Inference"], ["1", "Thread tight", "", "", ""], ["2", "Thread loose", "", "", ""]];
-  if (t.includes("starch") && t.includes("food")) return [["S. No.", "Food sample", "Iodine added", "Colour obtained", "Starch present/absent"], ["1", "Given sample", "2-3 drops", "", ""], ["2", "Control sample", "2-3 drops", "", ""]];
-  if (t.includes("onion peel")) return [["S. No.", "Cell part", "Observation under microscope", "Function/label", "Diagram shown?"], ["1", "Cell wall", "", "", ""], ["2", "Cytoplasm", "", "", ""], ["3", "Nucleus", "", "", ""]];
-  if (t.includes("magnesium oxide")) return [["S. No.", "Step/test", "Observation", "Inference", "Nature of MgO"], ["1", "Burning Mg ribbon", "", "", ""], ["2", "Ash + water + litmus", "", "", ""]];
-  if (t.includes("conduct electricity")) return [["S. No.", "Liquid tested", "LED/bulb glows?", "Conducting nature", "Inference"], ["1", "Distilled water", "", "", ""], ["2", "Tap water", "", "", ""], ["3", "Salt water/lemon juice", "", "", ""], ["4", "Oil", "", "", ""]];
-  if (t.includes("concave mirror") && t.includes("image")) return [["S. No.", "Object distance u", "Image distance v", "Image nature", "Image size"], ["1", "Beyond C", "", "", ""], ["2", "At C", "", "", ""], ["3", "Between C and F", "", "", ""]];
-  if (t.includes("buoyant")) return [["S. No.", "Weight in air", "Apparent weight in water", "Loss of weight", "Buoyant force"], ["1", "", "", "", ""]];
-  if (t.includes("white light")) return [["S. No.", "Prism position", "Screen distance", "Colours observed", "Order of colours"], ["1", "", "", "", "VIBGYOR"]];
-  if (t.includes("charge")) return [["S. No.", "Object rubbed", "Material used for rubbing", "Attracted object", "Inference"], ["1", "Balloon", "Wool/dry hair", "Paper pieces", ""]];
-  if (t.includes("copper sulphate") && t.includes("crystals")) return [["S. No.", "Step", "Observation", "Inference"]];
-  if (t.includes("neutralization")) return [["S. No.", "Drops of acid/base", "Indicator colour", "Inference"]];
-  if (t.includes("sulphur, iron")) return [["S. No.", "Separation method", "Component separated", "Observation"]];
-  if (t.includes("hydrogen") || t.includes("zinc and dilute hcl")) return [["S. No.", "Reactants", "Gas test observation", "Gas identified"]];
-  if (t.includes("saliva")) return [["S. No.", "Test tube", "Content", "Iodine colour after time"]];
+  if (t.includes("starch") && t.includes("food")) return [["S. No.", "Food sample", "Sample preparation", "Iodine solution added", "Colour obtained", "Inference"], ["1", "Given food sample", "Paste/extract with water", "2-3 drops", "", ""], ["2", "Known starch sample/control", "Paste/extract with water", "2-3 drops", "Blue-black", "Starch present"]];
+  if (t.includes("onion peel")) return [["S. No.", "Observed part", "NCERT microscope observation", "Stain/visibility", "Label to draw"], ["1", "Cell wall", "Brick-like boundary of plant cells", "Clearly visible after staining", "Cell wall"], ["2", "Cytoplasm", "Lightly stained material inside cell", "", "Cytoplasm"], ["3", "Nucleus", "Dark stained rounded body", "Visible in many cells", "Nucleus"], ["4", "Cell shape/arrangement", "Rectangular cells arranged compactly", "", "Onion epidermal cells"]];
+  if (t.includes("magnesium oxide")) return [["S. No.", "Step/test", "NCERT-style observation", "Inference", "Nature shown"], ["1", "Clean magnesium ribbon before burning", "Silvery grey strip", "Magnesium is a metal", ""], ["2", "Burning magnesium ribbon", "Bright white flame", "Chemical change occurs", ""], ["3", "Product after burning", "White ash/powder", "Magnesium oxide formed", ""], ["4", "Ash dissolved in water + litmus", "Red litmus turns blue / solution basic", "Magnesium oxide is basic", "Basic oxide"]];
+  if (t.includes("conduct electricity")) return [["S. No.", "Liquid tested", "Tester/LED observation", "Current passes?", "NCERT inference"], ["1", "Distilled water", "", "", "Poor/non-conductor"], ["2", "Tap water", "", "", "Conducts due to dissolved salts"], ["3", "Lemon juice/vinegar", "", "", "Conducting acidic solution"], ["4", "Salt solution", "", "", "Conducting salt solution"], ["5", "Oil", "", "", "Poor/non-conductor"]];
+  if (t.includes("concave mirror") && t.includes("image")) return [["S. No.", "Object position before concave mirror", "Screen/image position", "Image size", "Image nature/orientation", "NCERT diagram label"], ["1", "Beyond C", "", "Diminished", "Real and inverted", "Object, C, F, image"], ["2", "At C", "", "Same size", "Real and inverted", "Object at C"], ["3", "Between C and F", "", "Enlarged", "Real and inverted", "Object between C and F"], ["4", "Between F and P", "Image not obtained on screen", "Enlarged", "Virtual and erect", "Image behind mirror"]];
+  if (t.includes("buoyant")) return [["S. No.", "Object/trial", "Weight in air", "Apparent weight in water", "Loss of weight", "Upthrust/buoyant force"], ["1", "Given object - Trial 1", "", "", "", ""], ["2", "Given object - Trial 2", "", "", "", ""], ["3", "Mean value", "", "", "", ""]];
+  if (t.includes("white light")) return [["S. No.", "Light source/slit", "Prism position", "Screen observation", "Colours/order observed", "Inference"], ["1", "Sunlight/white light through narrow slit", "Triangular glass prism", "", "VIBGYOR", "White light splits into colours"]];
+  if (t.includes("charge")) return [["S. No.", "Object", "Material used for rubbing", "Object brought near", "Observation", "Inference"], ["1", "Balloon/plastic scale", "Woollen cloth/dry hair", "Small paper pieces", "", "Object gets charged by rubbing"], ["2", "Unrubbed object/control", "Not rubbed", "Small paper pieces", "", "No/less attraction"]];
+  if (t.includes("copper sulphate") && t.includes("crystals")) return [["S. No.", "NCERT crystallisation step", "Observation", "Inference"], ["1", "Impure copper sulphate dissolved in hot water", "", "Soluble impurities remain in solution"], ["2", "Filtration", "", "Insoluble impurities separated"], ["3", "Heating concentrated filtrate", "", "Saturated solution prepared"], ["4", "Cooling undisturbed", "", "Blue copper sulphate crystals form"]];
+  if (t.includes("neutralization")) return [["S. No.", "Test stage", "Solution/indicator condition", "Colour/observation", "Inference"], ["1", "Base + phenolphthalein", "NaOH with indicator", "Pink", "Basic medium"], ["2", "Acid added dropwise", "HCl added with stirring", "", "Neutralisation in progress"], ["3", "End point", "Just enough acid added", "Pink colour disappears", "Acid and base neutralised"], ["4", "Final solution", "Salt and water formed", "", "Neutral solution"]];
+  if (t.includes("sulphur, iron")) return [["S. No.", "Separation method", "Component separated", "Observation", "NCERT principle"], ["1", "Magnet", "Iron filings", "Iron sticks to magnet", "Magnetic separation"], ["2", "Sublimation/heating", "Ammonium chloride", "White vapours/deposit", "Sublimation"], ["3", "Remaining solid", "Sulphur", "Yellow powder remains", "Difference in physical property"]];
+  if (t.includes("hydrogen") || t.includes("zinc and dilute hcl")) return [["S. No.", "Reactants", "Observation during reaction", "Gas test", "Gas identified"], ["1", "Zinc + dilute HCl", "Bubbles/effervescence", "Burning splint gives pop sound", "Hydrogen"], ["2", "Control without zinc/acid", "", "No pop sound", "No hydrogen"]];
+  if (t.includes("saliva")) return [["S. No.", "Test tube", "Content", "Condition/time", "Iodine colour after test", "Inference"], ["1", "A", "Starch solution + saliva", "Kept warm 10-15 min", "", "Starch digested by saliva if no blue-black colour"], ["2", "B", "Starch solution without saliva", "Control", "Blue-black", "Starch remains present"]];
   if (t.includes("ohm")) return [["S. No.", "Voltmeter reading V (V)", "Ammeter reading I (A)", "Resistance R = V/I (ohm)", "Mean R"], ["1", "", "", "", ""], ["2", "", "", "", ""], ["3", "", "", "", ""], ["4", "", "", "", ""]];
   if (t.includes("path of deviation")) return [["S. No.", "Incident ray pin points", "Emergent ray pin points", "Angle of incidence", "Angle of deviation"], ["1", "P1, P2", "P3, P4", "", ""]];
   if (t.includes("density")) return [["S. No.", "Mass/weight of solid", "Initial water level", "Final water level", "Volume and density"], ["1", "", "", "", ""]];
@@ -801,6 +1197,53 @@ function listHtml(items) {
   return `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
 }
 
+function manualTextFor(exp) {
+  const lines = [];
+  lines.push("Hamarexperiments");
+  lines.push(`Experiment: ${exp.title}`);
+  lines.push(`Group: ${exp.group} (${groupInfo[exp.group]})`);
+  lines.push(`Subject: ${exp.subject}`);
+  lines.push("");
+  lines.push(`Aim: To ${exp.title.charAt(0).toLowerCase()}${exp.title.slice(1)}`);
+  if (isBalExperiment(exp)) {
+    const ref = primaryNcertReference(exp);
+    lines.push(`NCERT Source Rule: Aim is from Hamarexperiments. Write theory, procedure, observation method, calculation, activity figure, and final diagram using this NCERT source: ${ref.label} - ${ref.url}`);
+  }
+  if (isSeniorExperiment(exp)) {
+    const ref = primaryOlabsReference(exp);
+    lines.push(`OLabs Source Rule: Aim is from Hamarexperiments. Write theory, procedure, observation method, calculation, circuit/figure, and final diagram using this OLabs source: ${ref.label} - ${ref.url}`);
+  }
+  lines.push(`Apparatus: ${exp.materials}`);
+  lines.push("");
+  lines.push(`Theory: ${theoryFor(exp)}`);
+  lines.push("");
+  lines.push("Formula Used:");
+  formulaFor(exp).forEach((item) => lines.push(`- ${item}`));
+  lines.push("");
+  lines.push("Official Diagram Reference:");
+  officialReferenceFor(exp).forEach((item) => {
+    lines.push(item.pending ? `- ${item.label}` : `- ${item.label}: ${item.url}`);
+  });
+  lines.push("");
+  lines.push("Procedure:");
+  procedureFor(exp).forEach((step, index) => lines.push(`${index + 1}. ${step}`));
+  lines.push("");
+  lines.push("Observation Table:");
+  observationTableFor(exp).forEach((row) => lines.push(row.join(" | ")));
+  lines.push("");
+  lines.push(`Calculation: ${calculationFor(exp)}`);
+  lines.push(`Result: ${resultFor(exp)}`);
+  lines.push("");
+  lines.push("Precautions:");
+  lines.push(`- ${safetyFor(exp)}`);
+  lines.push("");
+  lines.push("Sources Of Error:");
+  sourcesOfErrorFor(exp).forEach((item) => lines.push(`- ${item}`));
+  lines.push("");
+  lines.push("Developed by DEVELOPERS");
+  return lines.join("\n");
+}
+
 function render() {
   const q = search.value.trim().toLowerCase();
   const list = experiments.filter((exp) => {
@@ -848,6 +1291,10 @@ function openDetail(id) {
     <h2>${exp.title}</h2>
     <p class="materials"><strong>Apparatus/Requirements:</strong> ${exp.materials}</p>
     ${videoMarkup(exp)}
+    <div class="manual-actions">
+      <button type="button" data-copy-note="${exp.id}">Copy Note</button>
+      <button type="button" data-print-note>Print / Save PDF</button>
+    </div>
     <div class="detail-grid">
       <section class="note">
         <h3>Aim</h3>
@@ -857,27 +1304,24 @@ function openDetail(id) {
         <h3>Apparatus</h3>
         <p>${exp.materials}</p>
       </section>
+      ${sourceRuleHtml(exp)}
       <section class="note wide">
-        <h3>Theory</h3>
+        <h3>${isSeniorExperiment(exp) ? "Theory From OLabs" : isBalExperiment(exp) ? "Theory From NCERT" : "Theory"}</h3>
         <p>${theoryFor(exp)}</p>
       </section>
       <section class="note wide">
         <h3>Formula Used</h3>
         ${listHtml(formulaFor(exp))}
       </section>
-      <section class="note wide diagram-note">
-        <h3>Diagram To Draw</h3>
-        <div class="diagram-box">
-          <div class="diagram-icon" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          ${listHtml(diagramFor(exp))}
+      <section class="note wide reference-note">
+        <h3>${isSeniorExperiment(exp) ? "OLabs Figure / Circuit Reference" : isBalExperiment(exp) ? "NCERT Figure / Activity Reference" : "Official Diagram Reference"}</h3>
+        <p class="source-note">${isSeniorExperiment(exp) ? "For class 9-12, use only OLabs for apparatus figure, circuit diagram, observation style, and lab-manual reference." : isBalExperiment(exp) ? "For class 6-8, use this specific NCERT source for activity figure, observation style, and lab-manual reference." : "Reference source is pending for this level."}</p>
+        <div class="reference-links">
+          ${referenceLinksHtml(exp)}
         </div>
       </section>
       <section class="note wide">
-        <h3>Procedure</h3>
+        <h3>${isSeniorExperiment(exp) ? "Procedure From OLabs" : isBalExperiment(exp) ? "Procedure From NCERT" : "Procedure"}</h3>
         <ol>${procedure}</ol>
       </section>
       <section class="note wide">
@@ -908,16 +1352,30 @@ function openDetail(id) {
 
 document.querySelectorAll(".filter").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelector(".filter.is-active").classList.remove("is-active");
-    button.classList.add("is-active");
-    currentFilter = button.dataset.filter;
-    if (currentFilter !== "Tarun") currentSubject = "all";
-    document.querySelectorAll(".subject-filter").forEach((item) => {
-      item.classList.toggle("is-active", item.dataset.subject === currentSubject);
-    });
-    render();
+    setGroupFilter(button.dataset.filter);
   });
 });
+
+document.querySelectorAll(".category-tile").forEach((button) => {
+  button.addEventListener("click", () => {
+    setGroupFilter(button.dataset.filter);
+    document.querySelector(".toolbar").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+function setGroupFilter(group) {
+  document.querySelector(".filter.is-active").classList.remove("is-active");
+  document.querySelector(`.filter[data-filter="${group}"]`).classList.add("is-active");
+  currentFilter = group;
+  if (currentFilter !== "Tarun") currentSubject = "all";
+  document.querySelectorAll(".subject-filter").forEach((item) => {
+    item.classList.toggle("is-active", item.dataset.subject === currentSubject);
+  });
+  document.querySelectorAll(".category-tile").forEach((item) => {
+    item.classList.toggle("is-active", item.dataset.filter === group);
+  });
+  render();
+}
 
 document.querySelectorAll(".subject-filter").forEach((button) => {
   button.addEventListener("click", () => {
@@ -941,6 +1399,38 @@ cards.addEventListener("click", (event) => {
 document.querySelector(".close-button").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
+});
+
+detailContent.addEventListener("click", async (event) => {
+  const copyButton = event.target.closest("[data-copy-note]");
+  const printButton = event.target.closest("[data-print-note]");
+
+  if (copyButton) {
+    const exp = experiments.find((item) => item.id === Number(copyButton.dataset.copyNote));
+    const text = manualTextFor(exp);
+    try {
+      await navigator.clipboard.writeText(text);
+      copyButton.textContent = "Copied";
+      setTimeout(() => {
+        copyButton.textContent = "Copy Note";
+      }, 1400);
+    } catch {
+      const area = document.createElement("textarea");
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
+      copyButton.textContent = "Copied";
+      setTimeout(() => {
+        copyButton.textContent = "Copy Note";
+      }, 1400);
+    }
+  }
+
+  if (printButton) {
+    window.print();
+  }
 });
 
 render();
